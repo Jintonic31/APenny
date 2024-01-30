@@ -213,6 +213,13 @@ FROM product p, temperature t, pcategory pc
 WHERE p.tseq = t.tseq;
 
 
+CREATE OR REPLACE VIEW bview AS
+SELECT b.bseq, b.useyn, b.priority, bi.biseq, bi.bname, bi.image
+FROM banner b, bimages bi
+WHERE b.biseq = bi.biseq;
+select * from bview;
+
+
 
 
 /* Insert Data */
@@ -221,16 +228,29 @@ VALUES('kim', '1234', '김일번', 'F', '010', '1111', '1111', '2000', '11', '15
 
 
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '커피/에스프레소');
+INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '라떼/밀크티');
+INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '에이드/주스');
+INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '스무디');
+INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '디저트');
 
-INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'HOT');
-INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ICE');
+select*from pcategory;
+
+INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'HOT/따뜻한');
+INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ICED/차가운');
+/* 1번 상품에 tseq를 각각 줄수있는 방법이 몰까.. */
 
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 1, 1, '아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano', 1000, 4500, 3500);
+VALUES(product_pseq.nextval, 1, 1, 'HOT)아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano', 1000, 4500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 1, 2, '아메리카노', '차가운 아메리카노입니다', 'iceAmericano', 1000, 4500, 3500);
+VALUES(product_pseq.nextval, 1, 2, 'ICED)아메리카노', '차가운 아메리카노입니다', 'iceAmericano', 1000, 4500, 3500);
 
 
+
+INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter1');
+INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter2');
+
+INSERT INTO banner (bseq, biseq, priority) VALUES(banner_bseq.nextval, 1, 1);
+INSERT INTO banner (bseq, biseq, priority) VALUES(banner_bseq.nextval, 2, 2);
 
 
 

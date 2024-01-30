@@ -3,20 +3,29 @@
 
 /* 키오스크 : 1080 * 1920 */
 
-body{ background-color:royalblue; display:flex; flex-direction:column; }
 
-.indexLogo{ border:3px solid white; flex:1; width:100%; }
-.indexLogo img:first-child{ width:450px; margin:0 30px; }
-.indexLogo img:last-child{ margin-bottom:60px; }
 
-.togoOrnot{ border:3px solid yellow; flex:2; width:100%;  padding:50px 0 250px 0; background-color:rgb(11, 12, 30); 
-			display:flex; flex-direction:column; align-items:center; }
+body{ background-color:royalblue; display:flex; flex-direction:column; margin:0; }
+.container{ flex:1; width:100%; height:100%; display:flex; flex-direction:column;}
+
+.indexLogo{ flex:1; width:100%; display:flex; }
+.indexLogo img:first-child{ flex:1; margin-right:50px;  }
+.indexLogo img:last-child{ margin-bottom:60px; flex:1; }
+
+.togoOrnot{ flex:2; width:100%;  padding:50px 30px 250px 70px; background-color:rgb(11, 12, 30); 
+			display:flex; flex-direction:column; align-items:center; margin:0 0 0 -80px; }
 .indexTitle1{ height:80px; line-height:100px; font-size:2.5em; font-weight:bold; color:white; margin-top:80px; }
 .indexTitle2{ height:80px; line-height:100px; font-size:2em; font-weight:bold; color:white; }
-.indexChoice{ border:1px solid white; height:100%; display:flex; flex-direction:row; margin-top:80px; }
+.indexChoice{ height:100%; display:flex; flex-direction:row; margin-top:80px; }
+.indexChoice a{ text-decoration: none; }
 .indexChoice img{ width:100%; height:100%; }
 .eatnow{ border:none; background-color:white; box-shadow:3px 3px 3px gray; width:300px; height:300px; border-radius:20px; margin:0 80px 0 0; }
 .togo{ border:none; background-color:white; box-shadow:3px 3px 3px gray; width:300px; height:300px; border-radius:20px; margin:0 0 0 80px; }
 .btnSubs{ color:white; margin-top:50px; width:300px; height:80px; font-size:2em; font-weight:bold; text-align:center;}
 
-.Banner{ border:3px solid lightgreen; flex:1; width:100%; }
+.Banner{ flex:1; width:100%; height:100%; }
+.bannerImg img{ width:100%; height:100%; }
+
+
+
+

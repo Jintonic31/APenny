@@ -1,4 +1,4 @@
-package cafe.appeny;
+package cafe.apenny;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
