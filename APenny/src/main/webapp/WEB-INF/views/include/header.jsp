@@ -12,18 +12,14 @@
 
 <link rel="stylesheet" type="text/css" href="/script/slick/slick.css">
 <link rel="stylesheet" type="text/css" href="/script/slick/slick-theme.css">
-<!-- <link rel="stylesheet" href="/css/otshop.css"> -->
-<link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/member.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/include.css">
 <link rel="stylesheet" href="/css/product.css">
 
 
 <script src="/script/jquery-3.7.1.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="/script/slick/slick.min.js"></script>
-
-<script type="text/javascript" src="/script/header.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -39,9 +35,8 @@
 			<div class="goHome">
 				<a href="/"><img src="images/include/goHome.png"></a>
 			</div>
-			<div class="indexLogo">
-				<img src="images/index/mainImage.png">
-				<img src="images/index/logo.png">
+			<div class="headerLogo">
+				<img src="images/include/logo.png">
 			</div>
 		</div>
 	</header>

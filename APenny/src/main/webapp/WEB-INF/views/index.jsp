@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -37,13 +37,12 @@
 	
 				<a href="productList"><div class="togo">
 					<img src="images/index/togo.png">
-					<div class="btnSubs">포장하기<br>(To go)</div>
+					<div class="btnSubs">포장<br>(To go)</div>
 					<input type="hidden" value="포장">
 				</div></a>
 			</div>
 		</div>
-		
-		<div class="Banner">
+ 		<div class="Banner">
 			<c:forEach items="${bannerList}" var="bannerVO">
 				<div class="bannerImg"><img src="images/banner/${bannerVO.IMAGE}.jpg"></div>
 			</c:forEach>

@@ -232,18 +232,16 @@ INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '라떼/�
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '에이드/주스');
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '스무디');
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '디저트');
-
 select*from pcategory;
 
 INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'HOT/따뜻한');
 INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ICED/차가운');
-/* 1번 상품에 tseq를 각각 줄수있는 방법이 몰까.. */
+
 
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
 VALUES(product_pseq.nextval, 1, 1, 'HOT)아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano', 1000, 4500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
 VALUES(product_pseq.nextval, 1, 2, 'ICED)아메리카노', '차가운 아메리카노입니다', 'iceAmericano', 1000, 4500, 3500);
-
 
 
 INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter1');

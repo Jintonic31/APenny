@@ -26,5 +26,5 @@ CREATE OR REPLACE PROCEDURE getPcategory(
 )
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM  pcategory ORDER BY pcseq DESC;
+    OPEN p_cur FOR SELECT * FROM  pcategory ORDER BY pcseq ASC;
 END;

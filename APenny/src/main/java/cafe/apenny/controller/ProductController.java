@@ -17,11 +17,6 @@ public class ProductController {
 	ProductService ps;
 	
 	
-	@GetMapping("/")
-	public String main() {
-		return "index";
-	}
-	
 	
 	@GetMapping("/productList")
 	public ModelAndView productList(
@@ -37,15 +32,18 @@ public class ProductController {
 		ps.getPcategory(paramMap);
 		
 		mav.addObject("productList", paramMap.get("rfcursor"));
-		mav.addObject("pcategoryList", paramMap.get("rfcurosr2"));
-		
-		mav.setViewName("product/productListFrm");
+		mav.addObject("pcategoryList", paramMap.get("rfcursor2"));
 		
 		System.out.println("REFCUROSR : " + paramMap.get("rfcursor"));
 		System.out.println("REFCUROSR2 : " + paramMap.get("rfcursor2"));
 		
+		mav.setViewName("product/productListFrm");
+				
 		return mav;
 		
 	}
+	
+	
+	
 	
 }

@@ -1,12 +1,11 @@
 package cafe.apenny.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import cafe.apenny.service.AdminService;
 
@@ -18,7 +17,7 @@ public class AdminController {
 	
 	
 	
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String showBanner(Model model) {
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("rfcursor", null);
