@@ -28,3 +28,32 @@ IS
 BEGIN
     OPEN p_cur FOR SELECT * FROM  pcategory ORDER BY pcseq ASC;
 END;
+--------------------------------------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE getProductOne(
+    p_pseq IN product.pseq%TYPE,
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM product WHERE pseq = p_pseq;
+END;
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

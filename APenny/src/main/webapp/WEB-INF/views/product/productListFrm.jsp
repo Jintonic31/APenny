@@ -2,39 +2,70 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
+
+
 <div class="mainWrap">
 	<form id="productFrm" method="get">
+	
 		<div id="ptabsWrap">
-		    <c:forEach items="${pcategoryList}" var="pcategoryVO">
-		    	<div class="ptab">${pcategoryVO.PCNAME}</div>
-		    </c:forEach>
-	    </div>
-	    
+			<c:forEach items="${pcategoryList}" var="pcategoryVO">
+				<div class="ptab" id="tabPcseq${pcategoryVO.PCSEQ}" onClick='goCategory(${pcategoryVO.PCSEQ})'>${pcategoryVO.PCNAME}</div>
+			</c:forEach>
+		</div>
+		
+		
+		<!-- Modal Start -->
+		
+	    <div id="pdModal" class="modal">
+			<div class="modal-content" id="modalContent">
+			
+				<!-- 외부 jsp 출력 -->
+				
+			</div>
+		</div>
+		
+		<!-- Modal End -->
+		
+		
+			    
 	    <div id="plistsWrap">
 	    	<c:forEach items="${productList}" var="productVO">
-	    		<div class="productList">
-	    			<div class="pimg">${productVO.IMAGE}</div>
-	    			<div class="pname">${productVO.PNAME}</div>
-	    			<!-- VIEW 에 temperature 테이블 추가 -->
-	    		</div>
+	    	
+	    		<a href="#" onclick="openModal(${productVO.PSEQ})">
+	    			<div class="productList" id="listPcseq${productVO.PCSEQ}">
+		    			<div class="pimg">
+		    				<img src="images/product/${productVO.IMAGE}.jpg">
+		    			</div>
+		    			<div class="ptempt">${productVO.TNAME}</div>
+		    			<div class="pname">${productVO.PNAME}</div>
+		    			<div class="pprice">
+		    				💰<fmt:formatNumber value='${productVO.PRICE2}' pattern="#,###" /></div>
+	    			</div>
+	    		</a>
 	    	</c:forEach>
-	    
 	    </div>
-	    <%-- <div id="pcontents">
-	    	<c:forEach items="${pcategoryList}" var="pcategoryVO">
-	    		<c:forEach items="${productList}" var="productVO">
-	    			<div class="pcontent">${productVO.pseq}</div>
-	    		</c:forEach>
-	        <div class="pcontent" id="content1">Content A</div>
-	        <div class="pcontent" id="content2">Content B</div>
-	        <div class="pcontent" id="content3">Content C</div>
-	        <div class="pcontent" id="content4">Content D</div>
-	        <div class="pcontent" id="content5">Content E</div>
-	        <div class="pcontent" id="content6">Content F</div>
-	        </c:forEach>
-	    </div> --%>
+	    
 	
 	</form>
 </div>
+
+<script>
+	function openModal(pseq){
+		$('.modal-content').load("/productDetail?pseq=" + pseq);
+		$('#pdModal').css('display', 'flex');
+	}
+</script>
+
+
+
+<style>
+	#pdModal{
+		position:relative;
+		margin:0 auto;
+		display:none;
+		width:500px;
+		height:700px;
+	}
+</style>
 
 <%@ include file="../include/footer.jsp" %>

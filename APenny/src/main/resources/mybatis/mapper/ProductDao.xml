@@ -21,5 +21,14 @@
 		}
 	</select>
 	
+	<select id="getProductOne" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			CALL getProductOne(
+				#{pseq},
+				#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=productMap }
+			)
+		}
+	</select>
+	
 	
 </mapper>

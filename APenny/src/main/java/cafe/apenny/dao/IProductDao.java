@@ -11,4 +11,10 @@ public interface IProductDao {
 
 	void getPcategory(HashMap<String, Object> paramMap);
 
+	void getProductOne(HashMap<String, Object> paramMap);
+
+	
+
+
+
 }

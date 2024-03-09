@@ -14,12 +14,18 @@ public class ProductService {
 	IProductDao pdao;
 
 	public void getProduct(HashMap<String, Object> paramMap) {
-		pdao.getProduct(paramMap);
+		pdao.getProduct(paramMap);		
 	}
 
 	public void getPcategory(HashMap<String, Object> paramMap) {
-		pdao.getPcategory(paramMap);
+		pdao.getPcategory(paramMap);		
 	}
+
+	public void getProductOne(HashMap<String, Object> paramMap) {
+		pdao.getProductOne(paramMap);		
+	}
+
+
 
 	
 	

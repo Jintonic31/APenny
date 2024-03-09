@@ -208,9 +208,12 @@ ALTER TABLE product
 
 /* Create View */
 CREATE OR REPLACE VIEW pview AS
-SELECT p.pseq, t.tseq, t.tname, pc.pcseq, pc.pcname, p.pname, p.descript
+SELECT p.pseq, t.tseq, t.tname, pc.pcseq, pc.pcname, p.pname, p.descript,
+p.image, p.price1, p.price2, p.price3
 FROM product p, temperature t, pcategory pc
-WHERE p.tseq = t.tseq;
+WHERE p.tseq = t.tseq AND p.pcseq = pc.pcseq;
+select * from pview;
+
 
 
 CREATE OR REPLACE VIEW bview AS
@@ -232,16 +235,26 @@ INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '라떼/�
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '에이드/주스');
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '스무디');
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '디저트');
-select*from pcategory;
+
 
 INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'HOT/따뜻한');
 INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ICED/차가운');
+INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ONLY HOT');
+INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ONLY ICED');
 
 
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 1, 1, 'HOT)아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano', 1000, 4500, 3500);
+VALUES(product_pseq.nextval, 1, 1, '아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano', 1000, 4500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 1, 2, 'ICED)아메리카노', '차가운 아메리카노입니다', 'iceAmericano', 1000, 4500, 3500);
+VALUES(product_pseq.nextval, 1, 2, '아메리카노', '차가운 아메리카노입니다', 'iceAmericano', 1000, 4500, 3500);
+INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
+VALUES(product_pseq.nextval, 2, 1, '민트초코라떼', '따뜻한 민트초코라떼입니다', 'hotMintChoco', 2000, 5500, 3500);
+INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
+VALUES(product_pseq.nextval, 2, 2, '민트초코라떼', '차가운 민트초코라떼입니다', 'iceMintChoco', 2000, 5500, 3500);
+INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
+VALUES(product_pseq.nextval, 3, 4, '매직에이드', '마법같은 에이드입니다', 'magicAde', 1500, 5500, 4000);
+INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
+VALUES(product_pseq.nextval, 4, 4, '유니콘 프라페', '유니콘을 닮은 프라페입니다', 'unicornFrappe', 2500, 6500, 4000);
 
 
 INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter1');

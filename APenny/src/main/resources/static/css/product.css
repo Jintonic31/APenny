@@ -16,7 +16,6 @@
 	width:100%; height:200px;
 	background-color:white;
 	border-bottom:1px solid lightgrey;
-	margin-bottom:30px;
 }
 
 .ptab{
@@ -27,5 +26,65 @@
 	border-radius:30px;
 	font-weight:bold;
 	font-size:1.2em;
-	margin:20px 10px;
+	margin:70px 10px 20px 10px;
 }
+#tabPcseq1{
+	background-color:royalblue;
+	color:white;
+}
+
+
+#plistsWrap{
+	width:100%; height:980px;
+	max-height: 80vh; /* 화면 높이의 80%로 설정할 수도 있습니다. */
+    overflow-y: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+	display:flex;
+	justify-content:flex-start;
+	align-items:flex-start;
+	flex-wrap:wrap;
+	margin:10px 35px;
+}
+#plistsWrap a{
+	text-decoration:none;
+	color:black;
+}
+.productList{
+	border:2px solid royalblue;
+	border-radius:30px;
+	width:230px;
+	height:350px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	margin:40px 10px;
+}
+
+div[class^="productList"]:not(#listPcseq1) {
+    display: none;
+}
+
+.pimg{flex:3;}
+.pimg img{width:100%; height:200px;}
+.ptempt{
+	flex:1;
+	font-weight:bold;
+	font-size:110%;
+	margin-top:10px;
+}
+.pname{
+	flex:1;
+	font-weight:bold;
+	font-size:170%;
+	margin-top:-10px;
+}
+.pprice{
+	flex:1;
+	font-weight:bold;
+	font-size:130%;
+}
+
+
+
+
+
+/* ProductDetail Modal */
