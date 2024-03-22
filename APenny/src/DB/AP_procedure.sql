@@ -36,7 +36,7 @@ CREATE OR REPLACE PROCEDURE getProductOne(
 )
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM product WHERE pseq = p_pseq;
+    OPEN p_cur FOR SELECT * FROM pview WHERE pseq = p_pseq;
 END;
 --------------------------------------------------------------------------------
 

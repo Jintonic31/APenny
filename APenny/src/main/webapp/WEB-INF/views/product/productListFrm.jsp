@@ -39,7 +39,8 @@
 		    			<div class="ptempt">${productVO.TNAME}</div>
 		    			<div class="pname">${productVO.PNAME}</div>
 		    			<div class="pprice">
-		    				💰<fmt:formatNumber value='${productVO.PRICE2}' pattern="#,###" /></div>
+		    				💰<fmt:formatNumber value='${productVO.PRICE2}' pattern="#,###" />
+		    			</div>
 	    			</div>
 	    		</a>
 	    	</c:forEach>
@@ -60,8 +61,10 @@
 
 <style>
 	#pdModal{
-		position:relative;
-		margin:0 auto;
+		position:absolute;
+		left:50%;
+		top:40%;
+		transform:translate(-50%, -40%);
 		display:none;
 		width:600px;
 		height:700px;
