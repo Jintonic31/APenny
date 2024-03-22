@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/script/product.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/script/jquery-3.7.1.js"></script>
-<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="../css/product.css">
 
 	
 <div class="pdContainer">
@@ -19,7 +19,12 @@
 		<div class="pdtext">
 			<input type="hidden" value="${productVO.PSEQ}">
 			<div class="pdname">${productVO.PNAME}</div>
-			<div class="pdprice">💰<fmt:formatNumber value='${productVO.PRICE2}' pattern="#,###" />원</div>
+			<div class="pdprice">
+				<div>💰</div>
+				<div>
+					<fmt:formatNumber value='${productVO.PRICE2}' pattern="#,###" />원
+				</div>
+			</div>
 			<div class="pddescript">${productVO.DESCRIPT}</div>
 		</div>				
 	</div>

@@ -63,7 +63,7 @@
 		position:relative;
 		margin:0 auto;
 		display:none;
-		width:500px;
+		width:600px;
 		height:700px;
 	}
 </style>
