@@ -40,9 +40,29 @@ BEGIN
 END;
 --------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
 
+-- Cart
 
+CREATE OR REPLACE PROCEDURE insertCart(
+    p_pseq IN cart.pseq%TYPE,
+    p_qty IN cart.qty%TYPE,
+    p_tseq IN cart.tseq%TYPE
+)
+IS
+BEGIN
+    INSERT INTO cart(cseq, pseq, qty, tseq) values(cart_cseq.nextval, p_pseq, p_qty, p_tseq);
+END;
 
+--------------------------------------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE getCartList(
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM  cview ORDER BY cseq ASC;
+END;
 
 
 

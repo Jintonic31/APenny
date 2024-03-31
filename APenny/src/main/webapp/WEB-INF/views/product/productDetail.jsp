@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../css/product.css">
 
 	
-<div class="pdContainer">
+<form class="pdContainer" name="pdetail" action="get">
 	
 	<div class="pdTop">
 		<div class="closeBtn" onclick="closeModal()">
@@ -18,12 +18,14 @@
 	</div>
 	
 	<div class="pdinfo">
-		<div class="pdimg"><img src="images/product/${productVO.IMAGE}.jpg"></div>
+		<div class="pdimg"><img src="images/product/${productVO.IMAGE}"></div>
 		<div class="pdtext">
-			<input type="hidden" value="${productVO.PSEQ}">
+			<input type="hidden" name="pseq" value="${productVO.PSEQ}">
+			<input type="hidden" name="qty" value="1" />
 			<div class="pdprice">
 				💰&nbsp;&nbsp;<fmt:formatNumber value='${productVO.PRICE2}' pattern="#,###" />
 			</div>
+			<input type="hidden" name="tseq" value="${productVO.TSEQ}" />
 			<div class="pdtemt">${productVO.TNAME}</div>
 			<div class="pdname">${productVO.PNAME}</div>
 			<div class="pddescript">${productVO.DESCRIPT}</div>
@@ -31,11 +33,11 @@
 	</div>
 			
 	<div class="pdBtn">
-		<button onclick="goCart(${productVO.PSEQ})">
+		<button onclick="goCart()">
 			<img src="images/product/gocart.png" />담기
 		</button>
 	</div>
-</div>	
+</form>	
 
 
 

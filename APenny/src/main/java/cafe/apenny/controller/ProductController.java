@@ -22,8 +22,7 @@ public class ProductController {
 	
 	
 	@GetMapping("/productList")
-	public ModelAndView productList(
-			HttpServletRequest request) {
+	public ModelAndView productList() {
 		
 		ModelAndView mav = new ModelAndView();
 		

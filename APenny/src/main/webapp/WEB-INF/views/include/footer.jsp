@@ -12,10 +12,22 @@
 	<footer>
 		<div class="container">
 			<div class="cartList">
-				<%-- <c:forEach>
-					<div class="cartRow">
+				<c:forEach items="${cartList}" var="cartVO">
+					<div class="oneclist">
+						<div>${cartVO.PNAME}</div>
+						<div>${cartVO.QTY}</div>
+						<div>${cartVO.PRICE2}</div>
 					</div>
-				</c:forEach> --%>
+				</c:forEach>
+				<div class="ctotalPrice">
+					<div class=ctotalQty>
+						<div>수량 : ${totalQty}</div>
+						<div>
+							<fmt:formatNumber value="${totalPrice}" type="currency" />
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			<div class="orderBtns">
 			

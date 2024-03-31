@@ -75,11 +75,14 @@ CREATE TABLE bimages
 CREATE TABLE cart
 (
 	cseq number NOT NULL,
-	userid varchar2(30) NOT NULL,
+	tseq number NOT NULL,
 	pseq number NOT NULL,
 	qty number NOT NULL,
 	PRIMARY KEY (cseq)
 );
+select * from cart;
+select * from cview;
+delete from cart;
 
 
 CREATE TABLE members
@@ -162,12 +165,6 @@ ALTER TABLE banner
 ;
 
 
-ALTER TABLE cart
-	ADD FOREIGN KEY (userid)
-	REFERENCES members (userid)
-;
-
-
 ALTER TABLE orders
 	ADD FOREIGN KEY (userid)
 	REFERENCES members (userid)
@@ -189,6 +186,11 @@ ALTER TABLE product
 ALTER TABLE cart
 	ADD FOREIGN KEY (pseq)
 	REFERENCES product (pseq)
+;
+
+ALTER TABLE cart
+	ADD FOREIGN KEY (tseq)
+	REFERENCES temperature (tseq)
 ;
 
 
@@ -224,6 +226,15 @@ select * from bview;
 
 
 
+CREATE OR REPLACE VIEW cview AS
+SELECT c.cseq, c.pseq, t.tname, p.pname, c.qty, p.price2
+FROM cart c, product p, temperature t
+WHERE c.pseq = p.pseq and c.tseq = t.tseq;
+select * from cview;
+delete from cart;
+
+
+
 
 /* Insert Data */
 INSERT INTO members (userid, pwd, name, gender, tel1, tel2, tel3, b_year, b_month, b_date)
@@ -244,21 +255,21 @@ INSERT INTO temperature (tseq, tname) VALUES(temperature_tseq.nextval, 'ONLY ICE
 
 
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 1, 1, '아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano', 1000, 4500, 3500);
+VALUES(product_pseq.nextval, 1, 1, '아메리카노', '따뜻한 아메리카노입니다', 'hotAmericano.jpg', 1000, 4500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 1, 2, '아메리카노', '차가운 아메리카노입니다', 'iceAmericano', 1000, 4500, 3500);
+VALUES(product_pseq.nextval, 1, 2, '아메리카노', '차가운 아메리카노입니다', 'iceAmericano.jpg', 1000, 4500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 2, 1, '민트초코라떼', '따뜻한 민트초코라떼입니다', 'hotMintChoco', 2000, 5500, 3500);
+VALUES(product_pseq.nextval, 2, 1, '민트초코라떼', '따뜻한 민트초코라떼입니다', 'hotMintChoco.jpg', 2000, 5500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 2, 2, '민트초코라떼', '차가운 민트초코라떼입니다', 'iceMintChoco', 2000, 5500, 3500);
+VALUES(product_pseq.nextval, 2, 2, '민트초코라떼', '차가운 민트초코라떼입니다', 'iceMintChoco.jpg', 2000, 5500, 3500);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 3, 4, '매직에이드', '마법같은 에이드입니다', 'magicAde', 1500, 5500, 4000);
+VALUES(product_pseq.nextval, 3, 4, '매직에이드', '마법같은 에이드입니다', 'magicAde.jpg', 1500, 5500, 4000);
 INSERT INTO product (pseq, pcseq, tseq, pname, descript, image, price1, price2, price3)
-VALUES(product_pseq.nextval, 4, 4, '유니콘 프라페', '유니콘을 닮은 프라페입니다', 'unicornFrappe', 2500, 6500, 4000);
+VALUES(product_pseq.nextval, 4, 4, '유니콘 프라페', '유니콘을 닮은 프라페입니다', 'unicornFrappe.jpg', 2500, 6500, 4000);
 
 
-INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter1');
-INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter2');
+INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter1.jpg');
+INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season', 'winter2.jpg');
 
 INSERT INTO banner (bseq, biseq, priority) VALUES(banner_bseq.nextval, 1, 1);
 INSERT INTO banner (bseq, biseq, priority) VALUES(banner_bseq.nextval, 2, 2);

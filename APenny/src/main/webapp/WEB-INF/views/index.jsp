@@ -44,7 +44,7 @@
 		</div>
  		<div class="Banner">
 			<c:forEach items="${bannerList}" var="bannerVO">
-				<div class="bannerImg"><img src="images/banner/${bannerVO.IMAGE}.jpg"></div>
+				<div class="bannerImg"><img src="images/banner/${bannerVO.IMAGE}"></div>
 			</c:forEach>
 		</div>
 	</div>	

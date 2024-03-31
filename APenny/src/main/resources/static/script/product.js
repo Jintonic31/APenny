@@ -84,8 +84,9 @@ function openModal(pdetailUrl){
 
 
 
-function goCart(pseq){
-	
+function goCart(){
+	document.pdetail.action ="cartInsert";
+	document.pdetail.submit();
 }
 
 

@@ -5,7 +5,7 @@
 
 
 <div class="mainWrap">
-	<form id="productFrm" method="get">
+	<form id="productFrm" method="post">
 	
 		<div id="ptabsWrap">
 			<c:forEach items="${pcategoryList}" var="pcategoryVO">
@@ -34,7 +34,7 @@
 	    		<a href="#" onclick="openModal(${productVO.PSEQ})">
 	    			<div class="productList" id="listPcseq${productVO.PCSEQ}">
 		    			<div class="pimg">
-		    				<img src="images/product/${productVO.IMAGE}.jpg">
+		    				<img src="images/product/${productVO.IMAGE}">
 		    			</div>
 		    			<div class="ptempt">${productVO.TNAME}</div>
 		    			<div class="pname">${productVO.PNAME}</div>
