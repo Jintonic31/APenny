@@ -24,6 +24,7 @@
 			</div>
 		</div>
 		
+		
 		<!-- Modal End -->
 		
 		
@@ -56,8 +57,6 @@
 		$('#pdModal').css('display', 'flex');
 	}
 </script>
-
-
 
 <style>
 	#pdModal{

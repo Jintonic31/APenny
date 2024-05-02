@@ -1,14 +1,16 @@
 package cafe.apenny.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import cafe.apenny.service.CartService;
 
@@ -35,35 +37,86 @@ public class CartController {
 	}
 	
 	
-	@GetMapping("/getCartList")
-	public String getCartList( Model model ) {
+//	@GetMapping("/getCartList")
+//	public String getCartList( Model model ) {
+//		
+//		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+//		paramMap.put("rfcursor3", null);
+//		
+//		cs.getCartList(paramMap);
+//		System.out.println("#1 CLIST 의 값 : " + paramMap.get("rfcursor3"));
+//		
+//		List<Map<String, Object>> cartList = (List<Map<String, Object>>) paramMap.get("rfcursor3");
+//		for(Map<String, Object> oneItem : cartList) {
+//			int qty = (Integer)oneItem.get("QTY");
+//			int cseq = (Integer)oneItem.get("CSEQ");
+//			if(qty <= 0) {
+//				cs.deleteOneCart(cseq);
+//			}
+//		}
+//		
+//		cs.getCartList(paramMap);
+//		System.out.println("#2 CLIST 의 값 : " + paramMap.get("rfcursor3"));
+//		
+//		int totalPrice = (Integer) paramMap.get("totalPrice");
+//	    int totalQty = (Integer) paramMap.get("totalQty");
+//		
+//		model.addAttribute("totalPrice", totalPrice);
+//		model.addAttribute("totalQty", totalQty);
+//		model.addAttribute("cartList", paramMap.get("rfcursor3"));
+//		
+//		return "redirect:/productList";
+//	}
+	
+	
+	@GetMapping("/deleteAllCart")
+	public String deleteAllCart() {
+		
+		cs.deleteAllCart();	
+		
+		return "redirect:/";
+	}
+	
+	
+	@PostMapping("/cartSubQty")
+	public String cartSubQty(
+			@RequestBody Map<String, String> data) {
 		
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("rfcursor", null);
 		
-		cs.getCartList(paramMap);
+//		System.out.println("CSEQ 값 : " + data.get("cseq"));
+//		System.out.println("QTY 값 : " + data.get("qty"));
 		
-		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("rfcursor");
+		int cseq = Integer.parseInt(data.get("cseq"));
+		int qty = Integer.parseInt(data.get("qty"));
 		
-		int totalPrice = (Integer) paramMap.get("totalPrice");
-	    int totalQty = (Integer) paramMap.get("totalQty");
+		paramMap.put("cseq", cseq);
+		paramMap.put("qty", qty);
+		cs.cartSubQty(paramMap);
 		
-//		mav.addObject("totalPrice", totalPrice);
-//		// ㄴ Service에서 값을 구해 Cotroller로 전달됨
-//		mav.addObject("totalQty", totalQty);
-//		mav.addObject("cartList", list);
-		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("totalQty", totalQty);
-		model.addAttribute("cartList", list);
-	    
-		System.out.println("getCartList의 list : " + list);
+		return "redirect:/productList";
+	}
+	
+	
+	@PostMapping("/cartAddQty")
+	public String cartAddQty(
+			@RequestBody Map<String, String> data) {
 		
-//		mav.setViewName("include/footer");
-		return "include/footer";
+		HashMap<String, Object> paramMap = new HashMap<String, Object>();
+		
+//		System.out.println("CSEQ 값 : " + data.get("cseq"));
+//		System.out.println("QTY 값 : " + data.get("qty"));
+		
+		int cseq = Integer.parseInt(data.get("cseq"));
+		int qty = Integer.parseInt(data.get("qty"));
+		
+		paramMap.put("cseq", cseq);
+		paramMap.put("qty", qty);
+		cs.cartAddQty(paramMap);
+		
+		return "redirect:/productList";
 	}
 
-	
-	
 	
 	
 }

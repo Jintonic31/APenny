@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../css/product.css">
 
 	
-<form class="pdContainer" name="pdetail" action="get">
+<form class="pdContainer" name="pdetail">
 	
 	<div class="pdTop">
 		<div class="closeBtn" onclick="closeModal()">

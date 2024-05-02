@@ -61,18 +61,66 @@ CREATE OR REPLACE PROCEDURE getCartList(
 )
 IS
 BEGIN
-    OPEN p_cur FOR SELECT * FROM  cview ORDER BY cseq ASC;
+    OPEN p_cur FOR SELECT * FROM cview ORDER BY cseq ASC;
 END;
 
+--------------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE deleteAllCart
+IS
+BEGIN
+    delete from cart;
+END;
 
+--------------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE cartSubQty(
+    p_cseq IN cart.cseq%TYPE,
+    p_qty IN cart.qty%TYPE
+)
+IS
+BEGIN
+    IF p_qty <= 1 THEN
+        DELETE FROM cart WHERE cseq = p_cseq;
+    ELSIF p_qty >= 2 THEN
+        UPDATE cart SET qty = p_qty-1 WHERE cseq = p_cseq;
+    END IF;
+    COMMIT;
+END;
 
+--------------------------------------------------------------------------------
 
+--CREATE OR REPLACE PROCEDURE deleteOneCart(
+--    p_cseq IN cart.cseq%TYPE
+--)
+--IS
+--BEGIN
+--    DELETE FROM cart WHERE cseq = p_cseq;
+--END;
 
+--------------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE cartAddQty(
+    p_cseq IN cart.cseq%TYPE,
+    p_qty IN cart.qty%TYPE
+)
+IS
+BEGIN
+    UPDATE cart SET qty = p_qty+1 WHERE cseq = p_cseq;
+END;
 
+--------------------------------------------------------------------------------
+-- Order
 
+CREATE OR REPLACE PROCEDURE getPayOption(
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM payment;
+END;
+
+--------------------------------------------------------------------------------
 
 
 

@@ -83,11 +83,71 @@ function openModal(pdetailUrl){
 */
 
 
-
 function goCart(){
 	document.pdetail.action ="cartInsert";
 	document.pdetail.submit();
 }
+
+
+
+
+function subQty(cseq, qty){
+	var data = {
+		cseq : cseq,
+		qty : qty,
+	};
+	
+	$.ajax({
+		url : '/cartSubQty',
+		type : 'POST',
+		data : JSON.stringify(data),	// cseq를 JSON 문자열로 변환하여 컨트롤러에 전달
+		contentType : 'application/json', // 전송할 데이터 타입 지정
+		
+		// 콜백함수(/cartSubQty가 끝까지 에러없이 성공하면 호출됨)
+		success : function(res){
+			console.log('서버 응답 : ', res);
+			// 페이지 리로드
+    		window.location.reload();
+		},
+		error : function(xhr, sts, err){
+			console.error('AJAX 에러 : ', err);
+		}
+	});
+}
+
+function addQty(cseq, qty){
+	var data = {
+		cseq : cseq,
+		qty : qty,
+	};
+	
+	$.ajax({
+		url : '/cartAddQty',
+		type : 'POST',
+		data : JSON.stringify(data),	// cseq를 JSON 문자열로 변환하여 컨트롤러에 전달
+		contentType : 'application/json', // 전송할 데이터 타입 지정
+		
+		// 콜백함수(/cartAddQty가 끝까지 에러없이 성공하면 호출됨)
+		success : function(res){
+			console.log('서버 응답 : ', res);
+			// 페이지 리로드
+    		window.location.reload();
+		},
+		error : function(xhr, sts, err){
+			console.error('AJAX 에러 : ', err);
+		}
+	});
+}
+
+
+function goOrderCheck(){
+	document.footcart.action = "orderCheck";
+	document.footcart.submit();
+}
+
+
+
+
 
 
 

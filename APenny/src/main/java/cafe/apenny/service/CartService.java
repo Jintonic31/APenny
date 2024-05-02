@@ -22,7 +22,7 @@ public class CartService {
 		icdao.getCartList(paramMap);
 		
 		// 총액, 총 수량 구하는 코드
-		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("rfcursor");
+		ArrayList<HashMap<String, Object>> list = (ArrayList<HashMap<String, Object>>)paramMap.get("rfcursor3");
 		
 		int totalPrice = 0;
 		int totalQty = 0;
@@ -34,6 +34,19 @@ public class CartService {
 		
 		paramMap.put("totalPrice", totalPrice);
 		paramMap.put("totalQty", totalQty);
+	}
+
+	public void deleteAllCart() {
+		icdao.deleteAllCart();		
+	}
+
+	public void cartSubQty(HashMap<String, Object> paramMap) {
+		icdao.cartSubQty(paramMap);
+	}
+
+	public void cartAddQty(HashMap<String, Object> paramMap) {
+		icdao.cartAddQty(paramMap);
+		
 	}
 	
 	

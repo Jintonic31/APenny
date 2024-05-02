@@ -3,17 +3,18 @@
 
 /* 키오스크 : 1080 * 1920 */
 
+html{width:1080px; height:1920px;}
 
-
-body{ background-color:royalblue; display:flex; flex-direction:column; margin:0; }
+body{ width:1080px; height:1920px; background-color:royalblue; display:flex; flex-direction:column; margin:0; }
 .container{ flex:1; width:100%; height:100%; display:flex; flex-direction:column;}
 
-.indexLogo{ flex:1; width:100%; display:flex; }
-.indexLogo img:first-child{ flex:1; margin-right:50px;  }
-.indexLogo img:last-child{ margin-bottom:60px; flex:1; }
+.indexLogo{ flex:1; width:100%; max-height:480px; display:flex; }
+.indexLogo div{flex:1; height:100%;}
+.indexLogo img:first-child{ width:450px; height:480px;  }
+.indexLogo img:last-child{ width:500px; height:480px; margin-bottom:60px; flex:1; }
 
-.togoOrnot{ flex:3; width:100%;  padding:50px 30px 250px 70px; background-color:white; 
-			display:flex; flex-direction:column; align-items:center; margin:0 0 0 -50px; }
+.togoOrnot{ flex:3; width:100%; padding:50px 0 250px 0; background-color:white; 
+			display:flex; flex-direction:column; align-items:center; }
 .indexTitle1{ height:80px; line-height:100px; font-size:2.5em; font-weight:bold; color:black; margin-top:80px; }
 .indexTitle2{ height:80px; line-height:100px; font-size:2em; font-weight:bold; color:black; }
 .indexChoice{ height:100%; display:flex; flex-direction:row; margin-top:80px; }
@@ -24,7 +25,7 @@ body{ background-color:royalblue; display:flex; flex-direction:column; margin:0;
 .btnSubs{ color:black; margin-top:50px; width:300px; height:80px; font-size:2em; font-weight:bold; text-align:center;}
 
 .Banner{ flex:1; width:100%; height:100%; }
-.bannerImg img{ width:100%; height:100%; }
+.bannerImg img{ width:100%; height:100%; max-height:520px;}
 
 
 

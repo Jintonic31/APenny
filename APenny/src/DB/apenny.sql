@@ -7,9 +7,11 @@ DROP TABLE cart CASCADE CONSTRAINTS;
 DROP TABLE odetail CASCADE CONSTRAINTS;
 DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE members CASCADE CONSTRAINTS;
+DROP TABLE membership CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE pcategory CASCADE CONSTRAINTS;
 DROP TABLE temperature CASCADE CONSTRAINTS;
+DROP TABLE payment CASCADE CONSTRAINTS;
 */
 
 
@@ -20,9 +22,11 @@ DROP SEQUENCE bimages_biseq;
 DROP SEQUENCE cart_cseq;
 DROP SEQUENCE odetail_odseq;
 DROP SEQUENCE orders_oseq;
+DROP SEQUENCE membership_msseq;
 DROP SEQUENCE pcategory_pcseq;
 DROP SEQUENCE product_pseq;
 DROP SEQUENCE temperature_tseq;
+DROP SEQUENCE payment_pmseq;
 */
 
 
@@ -34,9 +38,11 @@ CREATE SEQUENCE bimages_biseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE cart_cseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE odetail_odseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE orders_oseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE membership_msseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE pcategory_pcseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE product_pseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE temperature_tseq INCREMENT BY 1 START WITH 1;
+CREATE SEQUENCE payment_pmseq INCREMENT BY 1 START WITH 1;
 
 
 
@@ -87,19 +93,22 @@ delete from cart;
 
 CREATE TABLE members
 (
-	userid varchar2(30) NOT NULL,
-	pwd varchar2(30) NOT NULL,
-	name varchar2(30) NOT NULL,
-	gender char(1) NOT NULL,
-	tel1 varchar2(5) NOT NULL,
-	tel2 varchar2(10) NOT NULL,
-	tel3 varchar2(10) NOT NULL,
+	tel2 varchar2(20) NOT NULL,
+	tel1 varchar2(5) DEFAULT '010' NOT NULL,
+	nick varchar2(15) NOT NULL,
 	b_year varchar2(4) NOT NULL,
 	b_month varchar2(2) NOT NULL,
 	b_date varchar2(2) NOT NULL,
 	regdate varchar2(20) DEFAULT 'sysdate' NOT NULL,
 	useyn char(1) DEFAULT 'Y',
-	PRIMARY KEY (userid)
+	PRIMARY KEY (tel2)
+);
+
+CREATE TABLE membership(
+	msseq number NOT NULL,
+	tel2 varchar2(20) NOT NULL,
+	point number DEFAULT 0 NOT NULL,
+	PRIMARY KEY (msseq)
 );
 
 
@@ -108,6 +117,7 @@ CREATE TABLE odetail
 	odseq number NOT NULL,
 	oseq number NOT NULL,
 	pseq number NOT NULL,
+	pmseq number NOT NULL,
 	qty number NOT NULL,
 	PRIMARY KEY (odseq)
 );
@@ -116,7 +126,7 @@ CREATE TABLE odetail
 CREATE TABLE orders
 (
 	oseq number NOT NULL,
-	userid varchar2(30) NOT NULL,
+	tel2 varchar2(10) NOT NULL,
 	odate varchar2(30) DEFAULT 'sysdate' NOT NULL,
 	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (oseq)
@@ -155,6 +165,13 @@ CREATE TABLE temperature
 	PRIMARY KEY (tseq)
 );
 
+CREATE TABLE payment(
+	pmseq number NOT NULL,
+	pmname varchar2(20) NOT NULL,
+	pmimage varchar2(20) NOT NULL,
+	PRIMARY KEY (pmseq)
+);
+
 
 
 /* Create Foreign Keys */
@@ -166,8 +183,8 @@ ALTER TABLE banner
 
 
 ALTER TABLE orders
-	ADD FOREIGN KEY (userid)
-	REFERENCES members (userid)
+	ADD FOREIGN KEY (tel2)
+	REFERENCES members (tel2)
 ;
 
 
@@ -199,10 +216,19 @@ ALTER TABLE odetail
 	REFERENCES product (pseq)
 ;
 
+ALTER TABLE odetail
+	ADD FOREIGN KEY (pmseq)
+	REFERENCES payment (pmseq)
+;
 
 ALTER TABLE product
 	ADD FOREIGN KEY (tseq)
 	REFERENCES temperature (tseq)
+;
+
+ALTER TABLE membership
+	ADD FOREIGN KEY (tel2)
+	REFERENCES members (tel2)
 ;
 
 
@@ -227,11 +253,10 @@ select * from bview;
 
 
 CREATE OR REPLACE VIEW cview AS
-SELECT c.cseq, c.pseq, t.tname, p.pname, c.qty, p.price2
+SELECT c.cseq, c.pseq, t.tname, p.pname, c.qty, p.price2, p.image
 FROM cart c, product p, temperature t
 WHERE c.pseq = p.pseq and c.tseq = t.tseq;
 select * from cview;
-delete from cart;
 
 
 
@@ -274,7 +299,11 @@ INSERT INTO bimages (biseq, bname, image) VALUES(bimages_biseq.nextval, 'season'
 INSERT INTO banner (bseq, biseq, priority) VALUES(banner_bseq.nextval, 1, 1);
 INSERT INTO banner (bseq, biseq, priority) VALUES(banner_bseq.nextval, 2, 2);
 
-
+INSERT INTO payment (pmseq, pmname, pmimage) VALUES (payment_pmseq.nextval, '신용카드', 'creditcard.png' );
+INSERT INTO payment (pmseq, pmname, pmimage) VALUES (payment_pmseq.nextval, '모바일쿠폰', 'giftcon.png' );
+INSERT INTO payment (pmseq, pmname, pmimage) VALUES (payment_pmseq.nextval, '기프트카드', 'giftcard.png' );
+INSERT INTO payment (pmseq, pmname, pmimage) VALUES (payment_pmseq.nextval, '카카오페이', 'kakaopay.png' );
+INSERT INTO payment (pmseq, pmname, pmimage) VALUES (payment_pmseq.nextval, '포인트 결제', 'point.png');
 
 
 

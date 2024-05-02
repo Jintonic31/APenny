@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+
+
+/* 키오스크 : 1080 * 1920 */
+
+
+#orderCheckFrm{
+	width:100%;
+	height:1770px;
+	background-color:white;
+	display:flex;
+	flex-direction:column;	
+}
+
+.olistWrap{
+	width:100%;
+	height:600px;
+}
+
+.oneolistTitle{
+	width:100%;
+	height:90px;
+	display:flex;
+	font-size:1.8rem;
+	font-weight:bold;
+	color:white;
+	background-color:rgb(0, 1, 49);
+}
+.oneolistTitle div:nth-child(1){
+	flex:1;
+	height:100%;
+	text-align:center;
+	line-height:90px;
+}
+.oneolistTitle div:nth-child(2){
+	flex:2;
+	height:100%;
+	text-align:center;
+	line-height:90px;
+}
+.oneolistTitle div:nth-child(3), .oneolistTitle div:nth-child(4){
+	flex:1;
+	height:100%;
+	text-align:center;
+	line-height:90px;
+}
+
+.oneolistWrap{
+	width:100%;
+	height:100%;
+	display:flex;
+	flex-direction:column;
+	overflow-y: auto;
+}
+.oneolist{
+	width:100%;
+	height:170px;
+	border-bottom:1px solid lightgray;
+	display:flex;
+	align-items:center;
+	font-size:1.8rem;
+	font-weight:bold;
+}
+.oneolist:last-child{border:none;}
+.orderImg{
+	flex:1;
+	height:170px;
+	margin-left:50px;
+	display:flex;
+	align-items:center;
+}
+.orderImg img{
+	max-width:150px;
+	max-height:160px;
+}
+.orderPname{
+	flex:2;
+	height:170px;
+	text-align:center;
+	line-height:170px;
+}
+.orderQty, .orderPrice{
+	flex:1;
+	height:170px;
+	text-align:center;
+	line-height:170px;
+}
+
+.olistBottom{
+	width:100%;
+	height:90px;
+	display:flex;
+	align-items:center;
+	margin:90px 0 0 0;
+	font-size:1.8rem;
+	font-weight:bold;
+	border-bottom:1px solid lightgray;
+	border-top:1px solid lightgray;
+}
+.olistBottom div:nth-child(1){
+	flex:3;
+	text-align:center;
+}
+.olistBottom div:nth-child(2){
+	flex:1;
+	text-align:center;
+	padding-left:40px;
+}
+.olistBottom div:nth-child(3){
+	flex:1;
+	text-align:center;
+	color:royalblue;
+	padding-left:-30px;
+}
+
+
+.payment{
+	flex:2;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	width:100%;
+	height:100%;
+	background-color:rgb(0, 1, 49);
+	color:white;
+}
+.payTitle{
+	width:90%;
+	height:150px;
+	font-size:2.3rem;
+	font-weight:bold;
+	letter-spacing:3px;
+	line-height:150px;
+}
+
+.payOption{
+	width:90%;
+	height:100%;
+	margin:60px 0 0 0;
+	display:flex;
+	flex-wrap:wrap;
+}
+.onepayment{
+	width:240px;
+	height:240px;
+	border:5px solid white;
+	border-radius:20px;
+	margin:0 70px 0 0;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+}
+.payImg{
+	width:60%;
+	height:160px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.payImg img{
+	width:100%; height:80%;
+}
+.payName{
+	margin:10px 0 0 0;
+	font-size:1.8rem;
+	font-weight:bold;
+	letter-spacing:2px;
+}
+
+
+

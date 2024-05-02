@@ -18,9 +18,27 @@
 	<select id="getCartList" statementType="CALLABLE" parameterType="java.util.HashMap">
 	{
 		CALL getCartList(
-			#{rfcursor , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			#{rfcursor3 , mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
 		)
 	}
 	</select>
+	
+	<delete id="deleteAllCart" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call deleteAllCart()
+		}
+	</delete>
+	
+	<update id="cartSubQty" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call cartSubQty(#{cseq}, #{qty})
+		}
+	</update>
+	
+	<update id="cartAddQty" statementType="CALLABLE" parameterType="java.util.HashMap">
+		{
+			call cartAddQty(#{cseq}, #{qty})
+		}
+	</update>
 
 </mapper>
