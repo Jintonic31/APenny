@@ -9,7 +9,7 @@
 
 
 	<footer>
-		<form class="container" name="footcart">
+		<form class="fcontainer" name="footcart">
 			<div class="cartList">
 				<div class="oneclistTitle">
 					<div>상품명</div>

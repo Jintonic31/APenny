@@ -10,7 +10,16 @@
 	<select id="getPayOption" statementType="CALLABLE" parameterType="java.util.HashMap">
 	{
 		call getPayOption(
-			#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=cartMap}
+			#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
+		)
+	}
+	</select>
+	
+	<select id="getMember" statementType="CALLABLE" parameterType="java.util.HashMap">
+	{
+		call getMember(
+			#{tel2},
+			#{rfcursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=orderMap}
 		)
 	}
 	</select>

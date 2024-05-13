@@ -29,7 +29,7 @@
 	
 	<!-- Modal Start -->
 	
-    <div id="rewardModal" class="modal2">
+    <div id="mshipModal" class="modal2">
 		<div class="modal-content2" id="modalContent2">
 		
 			<!-- 외부 jsp 출력 -->
@@ -53,8 +53,8 @@
 		<div class="payTitle">결제 수단</div>
 		<div class="payOption">
 			<c:forEach items="${payOption}" var="payVO">
-				<div class="onepayment" onclick="rewardYN(${payVO.PMSEQ})">
-					<div class="payImg"><img src="images/payment/${payVO.PMIMAGE}" /></div>
+				<div class="onepayment" onclick="insertTel()" id="payment${payVO.PMSEQ}">
+					<div class="payImg"><img src="images/order/${payVO.PMIMAGE}" /></div>
 					<div class="payName">${payVO.PMNAME}</div>
 				</div>
 			</c:forEach>				
@@ -64,21 +64,21 @@
 </form>
 
 <script>
-	function rewardYN(pmseq){
-		$('.modal-content2').load("/selectReward?pmseq=" + pmseq);
-		$('#rewardModal').css('display', 'flex');
+	function insertTel(){
+		$('.modal-content2').load("/findMembership");
+		$('#mshipModal').css('display', 'flex');
 	}
 </script>
 
 <style>
-	#rewardModal{
+	#mshipModal{
 		position:absolute;
 		left:50%;
-		top:50%;
+		top:45%;
 		transform:translate(-50%, -40%);
 		display:none;
-		width:800px;
-		height:1000px;
+		width:900px;
+		height:900px;
 	}
 </style>
 

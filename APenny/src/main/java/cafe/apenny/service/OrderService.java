@@ -17,4 +17,8 @@ public class OrderService {
 		odao.getPayOption(paramMap);
 	}
 
+	public void getMember(HashMap<String, Object> paramMap) {
+		odao.getMember(paramMap);
+	}
+
 }

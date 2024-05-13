@@ -104,12 +104,14 @@ CREATE TABLE members
 	PRIMARY KEY (tel2)
 );
 
+
 CREATE TABLE membership(
 	msseq number NOT NULL,
 	tel2 varchar2(20) NOT NULL,
 	point number DEFAULT 0 NOT NULL,
 	PRIMARY KEY (msseq)
 );
+
 
 
 CREATE TABLE odetail
@@ -259,11 +261,22 @@ WHERE c.pseq = p.pseq and c.tseq = t.tseq;
 select * from cview;
 
 
+CREATE OR REPLACE VIEW mview AS
+SELECT ms.msseq, m.tel2, m.nick, ms.point, m.b_year, m.b_month, m.b_date
+FROM membership ms, members m
+WHERE ms.tel2 = m.tel2;
+select * from mview;
+
+
 
 
 /* Insert Data */
-INSERT INTO members (userid, pwd, name, gender, tel1, tel2, tel3, b_year, b_month, b_date)
-VALUES('kim', '1234', '김일번', 'F', '010', '1111', '1111', '2000', '11', '15' );
+INSERT INTO members (tel2, nick, b_year, b_month, b_date) VALUES('12341234', '설탕처돌이', '1996', '03', '01');
+INSERT INTO members (tel2, nick, b_year, b_month, b_date) VALUES('22222222', '설탕극혐이', '1985', '12', '09');
+
+
+INSERT INTO membership (msseq, tel2, point) VALUES (membership_msseq.nextval, '12341234', 1023);
+INSERT INTO membership (msseq, tel2) VALUES (membership_msseq.nextval, '22222222');
 
 
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '커피/에스프레소');

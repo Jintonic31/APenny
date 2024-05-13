@@ -121,7 +121,18 @@ BEGIN
 END;
 
 --------------------------------------------------------------------------------
+-- Members
 
+CREATE OR REPLACE PROCEDURE getMember(
+    p_tel2 IN members.tel2%TYPE,
+    p_cur OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cur FOR SELECT * FROM mview WHERE tel2 = p_tel2;
+END;
+
+--------------------------------------------------------------------------------
 
 
 

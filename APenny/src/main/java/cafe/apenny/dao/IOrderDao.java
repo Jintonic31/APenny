@@ -9,4 +9,6 @@ public interface IOrderDao {
 
 	void getPayOption(HashMap<String, Object> paramMap);
 
+	void getMember(HashMap<String, Object> paramMap);
+
 }
