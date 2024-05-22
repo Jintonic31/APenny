@@ -35,41 +35,35 @@
 		</div>
 	</div>
 	
-	<!-- Modal Start -->
+	<!-- Mini Modal Start -->
 	
     <div id="mshipMsg" class="modal3">
-    	<c:choose>
-    		<c:when test="${empty membership}">
-    			<div class="msgWrap">
-					${message}
-				</div>
-    		</c:when>
-    		<c:otherwise>
-    			<div class="msgWrap">
-    				<c:forEach items="${membership}" var="memberVO">
-    					<span>
-	    					${memberVO.NICK}님
-	    				</span><br>
-	    				<span>
-	    					포인트 : <fmt:formatNumber value="${memberVO.POINT}" type="currency" currencySymbol="" />점
-	    				</span>
-    				</c:forEach>
-    			</div>
-    		</c:otherwise>
-    	</c:choose>
+    	<c:forEach items="${membership}" var="memberVO">
+    		<span id="msNick">
+				${memberVO.NICK}
+			</span><br>
+			<span id="msPoint">
+				${memberVO.POINT}
+			</span>
+			
+			
+    	</c:forEach>
+    	<div class="msgWrap">
+ 			<span id="msMsg">${message}</span>
+ 		</div>	
 		
 		<div class="msgBtnsWrap">
-			<input type="button" value="적립안함" />
-			<input type="button" value="재입력" onclick="goRetype()" />
+			<input type="button" value="적립안함"  />
+			<input type="button" value="재입력" />
 		</div>
 	</div>
 	
 	
-	<!-- Modal End -->
+	<!-- Mini Modal End -->
 	
 	<div class="msBtns">
 		<div class="msBtnsWrap">
-			<input type="button" id="noMember" value="적립안함" />
+			<input type="button" id="noMember" value="적립안함" onclick="noReward()" />
 		</div>
 		<div class="msBtnsWrap">
 			<input type="button" id="yesMember" value="조회" onclick="gofindMember()" />

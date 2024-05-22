@@ -113,9 +113,36 @@ function gofindMember(){
 	$.ajax({
 		url : '/findMember',
 		type : 'POST',
+		async : true,
 		data : {tel2Value : selectTel2.val()},
 		success : function(res){
 			console.log('서버로 전송 성공 : '+ res);
+			
+			// #1 서버에서 보낸 res에서 id를 통해 값을 추출
+			var responseHtml = $(res);
+			// console.log('responseHtml 값 : ' + responseHtml);
+			
+			var nickname = responseHtml.find("#msNick").text();
+			// console.log("닉네임 : " + nickname);
+			
+			var point = responseHtml.find("#msPoint").text();
+			// console.log("포인트 : " + point);
+			
+			var message = responseHtml.find("#msMsg").text();
+			// console.log("메세지 : " + message);
+			
+			// #2 별도로 저장한 값을 html에 삽입
+			if(nickname == ''){
+				$(".modal3").html('<div class="msgWrap">' + message + '</div>')
+				// ㄴ .html : 선택한 요소(.msgWrap)을 완전히 파라미터로 전달한 문자열로 대체함	(기존 내용 유지 X)
+				$(".modal3").append('<div class="msgBtnsWrap"><input type="button" value="적립안함" onclick="noReward()" /><input type="button" value="재입력" onclick="goRetype()" /></div>');
+				// ㄴ .append : 선택한 요소(.msgWrap)의 자식 요소의 제일 마지막에 추가 (기존 내용은 유지)
+			}else{
+				$(".modal3").html('<div class="msInfo"><span>반갑습니다!</span><span>' + nickname + "님 </span><span>포인트 : " + point + '점</span></div>')
+				$(".modal3").append('<div class="msgBtnsWrap"><input type="button" value="적립안함" onclick="noReward()" /><input type="button" value="적립" onclick="yesReward()" /></div>');
+			}		
+			
+			// #3 모달 열기
 			var miniModal = document.getElementById("mshipMsg");
 			miniModal.style.display = "flex";
 		},
@@ -130,4 +157,22 @@ function gofindMember(){
 function goRetype(){
 	var miniModal = document.getElementById("mshipMsg");
 	miniModal.style.display = "none";
+}
+
+
+function noReward(){
+	
+	var miniModal = document.getElementById("mshipMsg");
+	miniModal.style.display = "none";
+	
+	$('.modal-content2').load("/insertCreditcard");
+	$('#mshipModal').css('display', 'flex');
+}
+
+function completePay(){
+	$('.modal-content2').load("/completePay");
+}
+
+function completeOrder(){
+	$('.modal-content2').load("/showOrderNum");
 }

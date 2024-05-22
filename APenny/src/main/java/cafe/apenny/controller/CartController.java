@@ -1,7 +1,6 @@
 package cafe.apenny.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cafe.apenny.service.CartService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CartController {
@@ -70,9 +71,11 @@ public class CartController {
 	
 	
 	@GetMapping("/deleteAllCart")
-	public String deleteAllCart() {
+	public String deleteAllCart(HttpServletRequest request) {
 		
-		cs.deleteAllCart();	
+		cs.deleteAllCart();
+		HttpSession session = request.getSession();
+		session.removeAttribute("totalPrice");
 		
 		return "redirect:/";
 	}

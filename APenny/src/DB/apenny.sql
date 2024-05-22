@@ -36,7 +36,6 @@ DROP SEQUENCE payment_pmseq;
 CREATE SEQUENCE banner_bseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE bimages_biseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE cart_cseq INCREMENT BY 1 START WITH 1;
-CREATE SEQUENCE odetail_odseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE orders_oseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE membership_msseq INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE pcategory_pcseq INCREMENT BY 1 START WITH 1;
@@ -113,7 +112,7 @@ CREATE TABLE membership(
 );
 
 
-
+/*
 CREATE TABLE odetail
 (
 	odseq number NOT NULL,
@@ -124,11 +123,18 @@ CREATE TABLE odetail
 	PRIMARY KEY (odseq)
 );
 
+-- pmseq 외래키, 컬럼 삭제
+ALTER TABLE odetail DROP CONSTRAINT SYS_C009630;
+ALTER TABLE odetail DROP COLUMN pmseq;
+select * from odetail;
+*/
 
 CREATE TABLE orders
 (
 	oseq number NOT NULL,
-	tel2 varchar2(10) NOT NULL,
+	tel2 varchar2(10),
+	pseq number NOT NULL,
+	qty number,
 	odate varchar2(30) DEFAULT 'sysdate' NOT NULL,
 	state char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (oseq)
@@ -167,6 +173,7 @@ CREATE TABLE temperature
 	PRIMARY KEY (tseq)
 );
 
+
 CREATE TABLE payment(
 	pmseq number NOT NULL,
 	pmname varchar2(20) NOT NULL,
@@ -183,24 +190,10 @@ ALTER TABLE banner
 	REFERENCES bimages (biseq)
 ;
 
-
-ALTER TABLE orders
-	ADD FOREIGN KEY (tel2)
-	REFERENCES members (tel2)
-;
-
-
-ALTER TABLE odetail
-	ADD FOREIGN KEY (oseq)
-	REFERENCES orders (oseq)
-;
-
-
 ALTER TABLE product
 	ADD FOREIGN KEY (pcseq)
 	REFERENCES pcategory (pcseq)
 ;
-
 
 ALTER TABLE cart
 	ADD FOREIGN KEY (pseq)
@@ -212,15 +205,14 @@ ALTER TABLE cart
 	REFERENCES temperature (tseq)
 ;
 
-
-ALTER TABLE odetail
+ALTER TABLE orders
 	ADD FOREIGN KEY (pseq)
 	REFERENCES product (pseq)
 ;
 
-ALTER TABLE odetail
-	ADD FOREIGN KEY (pmseq)
-	REFERENCES payment (pmseq)
+ALTER TABLE orders
+	ADD FOREIGN KEY (tel2)
+	REFERENCES members (tel2)
 ;
 
 ALTER TABLE product
@@ -270,13 +262,14 @@ select * from mview;
 
 
 
+
 /* Insert Data */
 INSERT INTO members (tel2, nick, b_year, b_month, b_date) VALUES('12341234', '설탕처돌이', '1996', '03', '01');
-INSERT INTO members (tel2, nick, b_year, b_month, b_date) VALUES('22222222', '설탕극혐이', '1985', '12', '09');
+INSERT INTO members (tel2, nick, b_year, b_month, b_date) VALUES('23452345', '설탕극혐이', '1985', '12', '09');
 
 
 INSERT INTO membership (msseq, tel2, point) VALUES (membership_msseq.nextval, '12341234', 1023);
-INSERT INTO membership (msseq, tel2) VALUES (membership_msseq.nextval, '22222222');
+INSERT INTO membership (msseq, tel2) VALUES (membership_msseq.nextval, '23452345');
 
 
 INSERT INTO pcategory (pcseq, pcname) VALUES(pcategory_pcseq.nextval, '커피/에스프레소');

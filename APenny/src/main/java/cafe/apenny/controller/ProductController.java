@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cafe.apenny.service.CartService;
 import cafe.apenny.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
@@ -24,7 +26,7 @@ public class ProductController {
 	
 	
 	@GetMapping("/productList")
-	public ModelAndView productList() {
+	public ModelAndView productList(HttpServletRequest request) {
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -49,6 +51,10 @@ public class ProductController {
 	    mav.addObject("totalQty", totalQty);
 	    mav.addObject("cartList", paramMap.get("rfcursor3"));
 		
+	    HttpSession session = request.getSession();
+	    session.setAttribute("totalPrice", totalPrice);
+	    // System.out.println("세션값 : " + session.getAttribute("totalPrice"));
+	    
 		// System.out.println("REFCUROSR : " + paramMap.get("rfcursor"));
 		// System.out.println("REFCUROSR2 : " + paramMap.get("rfcursor2"));
 	    // System.out.println("getCartList의 값 : " + paramMap.get("rfcursor3"));
