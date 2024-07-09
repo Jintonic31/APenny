@@ -134,7 +134,7 @@ public class OrderController {
 		ArrayList<HashMap<String, Object>> clist =  (ArrayList<HashMap<String, Object>>) paramMap.get("rfcursor3");
 		for(HashMap<String, Object> i : clist) {
 			int pseq = (int) i.get("PSEQ");
-			
+			// 멤버의 tel2(얘는 테이블 + 뷰), nick(얘는 뷰에 넣어야겠다)과 clist의 qty를 orders 테이블에 추가해야함
 		}
 		
 		
